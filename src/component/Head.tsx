@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Header } from 'thenextloop-uikit';
 import { axiosInterceptor, getUser } from '../service/UserService';
 import { setToken } from '../utils/LocalStorageUtil';
 import { OAUTH2_SERVER_URL } from '../utils/static';
@@ -59,7 +58,7 @@ function Head() {
 
     return (
         <div>
-            {user.id !== 0 ?
+            {/* {user.id !== 0 ?
             <Header 
                 header={headerList}
                 profileUrl={user.picture}
@@ -73,7 +72,7 @@ function Head() {
                 onClickButton={onClickButton}
                 onClickLogo={onClickLogo}
                 hideProfile/>
-            }
+            } */}
         </div>
     )
 }
