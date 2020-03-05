@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Item from '../component/Item';
+import ItemList from '../component/ItemList';
 
 export type Article = {
   title: string;
@@ -22,15 +22,20 @@ function PostListPage() {
       const response = await Axios.get(
         'http://newsapi.org/v2/top-headlines?country=us&apiKey=e0d5e6f0615a46e49eba6333a5882d22',
       );
-      setArticle(response.data.articles[0]);
+      setArticle(response.data.articles);
       setLoading(false);
-      console.log(response.data.articles[0]);
     };
     fetchData();
   }, []);
 
+  if (!article) {
+    return null;
+  }
+
   return (
-    <PostListTemplate>{article && <Item article={article} />}</PostListTemplate>
+    <PostListTemplate>
+      <ItemList articles={article} />
+    </PostListTemplate>
   );
 }
 
