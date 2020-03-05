@@ -2,6 +2,8 @@
 
 # custom
 /src/utils/static.tsx
+/cypress
+/cypress.json
 
 # dependencies
 /node_modules
