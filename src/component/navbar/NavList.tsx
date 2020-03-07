@@ -10,29 +10,27 @@ const NavListBlock = styled.div<{ toggle: boolean }>`
 
   @media screen and (max-width: 768px) {
     position: absolute;
-    top: 3.6rem;
+    align-items: baseline;
+    flex-direction: column;
+    top: 4rem;
+    left: 0;
     background: white;
     height: 100%;
-    left: 0;
     width: 12rem;
-    flex-direction: column;
+    padding: 2rem;
+
+    z-index: 500;
     transform: translateX(-100%);
 
-    padding-left: 1.5rem;
-    z-index: 500;
     ${props =>
       props.toggle
         ? css`
             transform: translateX(0%);
-
             transition: transform 0.2s;
           `
         : css`
             transition: transform 0.2s;
           `};
-  }
-  @media screen and (max-width: 568px) {
-    width: 50%;
   }
 `;
 
@@ -41,14 +39,15 @@ const NavItem = styled(NavLink)`
   white-space: pre;
   text-decoration: none;
   color: inherit;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
+
   &:hover {
-    color: #7950f2;
+    color: var(--main-color);
   }
   @media screen and (max-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
     & + & {
-      margin-top: 0.3rem;
+      margin-top: 0.7rem;
     }
   }
 `;
@@ -59,18 +58,20 @@ const activeStyle = {
 
 function NavList({ toggle }: any) {
   return (
-    <NavListBlock toggle={toggle}>
-      {navItemList.map((h: any) => (
-        <NavItem
-          key={h.name}
-          activeStyle={activeStyle}
-          to={h.name === 'all' ? '/' : `/${h.name}`}
-          exact
-        >
-          {h.text}
-        </NavItem>
-      ))}
-    </NavListBlock>
+    <>
+      <NavListBlock toggle={toggle}>
+        {navItemList.map((h: any) => (
+          <NavItem
+            key={h.name}
+            activeStyle={activeStyle}
+            to={h.name === 'all' ? '/' : `/${h.name}`}
+            exact
+          >
+            {h.text}
+          </NavItem>
+        ))}
+      </NavListBlock>
+    </>
   );
 }
 

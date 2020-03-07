@@ -1,7 +1,32 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { css, jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Button, ButtonGroup, Dialog } from 'thenextloop-uikit';
+
+const buttonStyle = css`
+  /* background-color: var(--main-color); */
+
+  &:hover {
+    /* background-color: var(--sub-color) !important; */
+  }
+`;
+
+const DialogTitle = styled.h1`
+  font-family: 'Rouge Script', cursive;
+  font-size: 2.5rem;
+
+  text-align: center;
+`;
+
+const DialogMessage = styled.div`
+  text-align: center;
+  margin-bottom: 0.5rem;
+  span {
+    font-weight: 600;
+    color: var(--main-color);
+  }
+`;
 
 function NavProfile() {
   const [visible, setVisible] = useState(false);
@@ -30,19 +55,20 @@ function NavProfile() {
         로그인
       </Button>
       <Dialog
-        title="로그인"
         cancelText="취소"
         visible={visible}
         onConfirm={onConfirm}
         onCancel={onCancel}
         cancelable
       >
+        <DialogTitle>letshadow</DialogTitle>
+        <DialogMessage>
+          <span>Let's Shadow</span>에 오신 것을 환영합니다 🥳
+        </DialogMessage>
+        {/* <DialogSNSMessage>SNS계정으로 간편 로그인</DialogSNSMessage> */}
         <ButtonGroup direction="column">
-          <Button size="medium" width="100%">
+          <Button size="large" theme="bordered" width="100%" css={buttonStyle}>
             구글 로그인
-          </Button>
-          <Button size="medium" width="100%">
-            페이스북 로그인
           </Button>
         </ButtonGroup>
       </Dialog>

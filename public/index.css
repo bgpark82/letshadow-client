@@ -23,3 +23,9 @@ body {
 #root {
   min-height: 100%;
 }
+
+:root {
+  --main-color: #7950f2;
+  --sub-color: #845ef7;
+  --disabled-color: #d0bfff;
+}

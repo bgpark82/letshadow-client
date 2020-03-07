@@ -7,7 +7,7 @@ const ItemListBlock = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 90%;
-  margin: 2rem auto 0 auto;
+  margin: 4rem auto 0 auto;
 `;
 
 function ItemList({ articles }: any) {
