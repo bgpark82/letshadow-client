@@ -19,7 +19,7 @@ const NavListBlock = styled.div<{ toggle: boolean }>`
     width: 12rem;
     padding: 2rem;
 
-    z-index: 500;
+    z-index: 200;
     transform: translateX(-100%);
 
     ${props =>
