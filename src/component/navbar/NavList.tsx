@@ -21,11 +21,13 @@ const NavListBlock = styled.div<{ toggle: boolean }>`
 
     z-index: 200;
     transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
 
     ${props =>
       props.toggle
         ? css`
             transform: translateX(0%);
+            -webkit-transform: translateX(0%);
             transition: transform 0.2s;
             -webkit-transition: transform 0.2s;
           `

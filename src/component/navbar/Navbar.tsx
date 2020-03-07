@@ -36,6 +36,7 @@ const DarkBackground = styled.div<{ toggle: boolean }>`
       css`
         opacity: 1;
         transition: opacity 0.2s;
+        -webkit-transition: opacity 0.2s;
       `};
   }
 `;
