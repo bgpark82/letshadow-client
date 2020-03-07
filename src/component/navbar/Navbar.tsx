@@ -48,7 +48,7 @@ function Navbar() {
 
   return (
     <div>
-      <DarkBackground toggle={toggle} />
+      {toggle ? <DarkBackground toggle={toggle} /> : null}
       <HeaderTemplate>
         <Burger onToggle={onToggle} />
         <Logo>letshadow</Logo>

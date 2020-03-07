@@ -27,9 +27,11 @@ const NavListBlock = styled.div<{ toggle: boolean }>`
         ? css`
             transform: translateX(0%);
             transition: transform 0.2s;
+            -webkit-transition: transform 0.2s;
           `
         : css`
             transition: transform 0.2s;
+            -webkit-transition: transform 0.2s;
           `};
   }
 `;
