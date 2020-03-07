@@ -10292,10 +10292,10 @@ text-table@0.2.0, text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-thenextloop-uikit@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/thenextloop-uikit/-/thenextloop-uikit-1.0.7.tgz#b603b7053aac0ee88316eaaa0d38f39011b93562"
-  integrity sha512-jGuA81jzW+Bxm4sRcrtAaMoFpL/mcv9QRCpMFUgSDC/dtuYHvRZvO6Q6UL8wCxdFZIhO0GQSOUWSJpQ4MWSgTA==
+thenextloop-uikit@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/thenextloop-uikit/-/thenextloop-uikit-1.0.8.tgz#52e05884abffaaf386e2f9924506b1acd62251f4"
+  integrity sha512-GjoUTYnvc5qQ2U5Qj3cLFgP3vFP7sKASvY8zDLGBED7xBjcSzlu011yYSoEi+TA4kMwxsKC4/fmA7UHhpxv3sw==
 
 throat@^4.0.0:
   version "4.1.0"
