@@ -24,10 +24,10 @@ const ItemContent = styled.div`
     align-items: center;
   }
   .item-source {
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: white;
     background: #f03e3e;
-    padding: 0.2rem 0.4rem;
+    padding: 0.1rem 0.3rem 0.2rem 0.3rem;
     border-radius: 5px;
   }
   .item-date {
@@ -53,15 +53,7 @@ const ItemContent = styled.div`
 `;
 
 function Item({ article }: any) {
-  const {
-    title,
-    description,
-    url,
-    urlToImage,
-    publishedAt,
-    content,
-    source,
-  } = article;
+  const { title, url, urlToImage, publishedAt, source } = article;
 
   return (
     <ItemBlock>
