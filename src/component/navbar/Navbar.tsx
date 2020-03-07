@@ -44,7 +44,6 @@ function Navbar() {
   const [toggle, setToggle] = useState(false);
   const onToggle = () => {
     setToggle(!toggle);
-    console.log(toggle);
   };
 
   return (
