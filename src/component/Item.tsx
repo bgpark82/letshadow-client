@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import { toYMD } from '../utils/Date';
+import { gray } from '../utils/theme';
 
 const ItemBlock = styled.div`
   margin: 0px;
@@ -47,7 +48,7 @@ const ItemContent = styled.div`
       color: black;
     }
     &:hover {
-      color: #495057;
+      color: ${gray.hover};
     }
   }
 `;

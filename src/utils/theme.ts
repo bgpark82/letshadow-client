@@ -8,7 +8,8 @@ export const color = {
 export const gray = {
   main: '#343a40',
   sub: '#e9ecef',
-  hover: '#f1f3f5',
+  hover: '#495057',
   disabled: '#c6d3e1',
   msg: '#868e96',
+  light: '#f8f9fa',
 };
