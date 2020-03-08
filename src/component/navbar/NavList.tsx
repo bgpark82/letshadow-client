@@ -1,10 +1,10 @@
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { animated, useSpring } from 'react-spring';
 import { navItemList } from '../../static/navigation';
 
-const NavListBlock = styled.div<{ toggle: boolean }>`
+const NavListBlock = styled(animated.div)<{ toggle: boolean }>`
   display: flex;
   align-items: center;
 
@@ -20,21 +20,6 @@ const NavListBlock = styled.div<{ toggle: boolean }>`
     padding: 2rem;
 
     z-index: 200;
-    transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-
-    ${props =>
-      props.toggle
-        ? css`
-            transform: translateX(0%);
-            -webkit-transform: translateX(0%);
-            transition: transform 0.2s;
-            -webkit-transition: transform 0.2s;
-          `
-        : css`
-            transition: transform 0.2s;
-            -webkit-transition: transform 0.2s;
-          `};
   }
 `;
 
@@ -61,21 +46,35 @@ const activeStyle = {
 };
 
 function NavList({ toggle }: any) {
+  const { transform, opacity } = useSpring({
+    from: { transform: 'translateX(-12rem)', opacity: 0.5 },
+    transform: toggle ? 'translateX(0rem)' : 'translateX(-12rem)',
+    opacity: toggle ? 1 : 0.5,
+    config: {
+      tension: 350,
+      friction: 30,
+    },
+  });
+
   return (
-    <>
-      <NavListBlock toggle={toggle}>
-        {navItemList.map((h: any) => (
-          <NavItem
-            key={h.name}
-            activeStyle={activeStyle}
-            to={h.name === 'all' ? '/' : `/${h.name}`}
-            exact
-          >
-            {h.text}
-          </NavItem>
-        ))}
-      </NavListBlock>
-    </>
+    <NavListBlock
+      toggle={toggle}
+      style={{
+        transform: transform.interpolate(transform => transform),
+        opacity: opacity.interpolate(opacity => opacity),
+      }}
+    >
+      {navItemList.map((h: any) => (
+        <NavItem
+          key={h.name}
+          activeStyle={activeStyle}
+          to={h.name === 'all' ? '/' : `/${h.name}`}
+          exact
+        >
+          {h.text}
+        </NavItem>
+      ))}
+    </NavListBlock>
   );
 }
 

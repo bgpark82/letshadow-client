@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { animated, config, useSpring } from 'react-spring';
 import Burger from './Burger';
 import NavList from './NavList';
 import NavProfile from './NavProfile';
@@ -21,7 +22,7 @@ const Logo = styled.div`
   font-size: 1.5rem;
 `;
 
-const DarkBackground = styled.div<{ toggle: boolean }>`
+const DarkBackground = styled(animated.div)`
   @media screen and (max-width: 768px) {
     position: fixed;
     top: 4rem;
@@ -30,14 +31,6 @@ const DarkBackground = styled.div<{ toggle: boolean }>`
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 100;
-    opacity: 0;
-    ${props =>
-      props.toggle &&
-      css`
-        opacity: 1;
-        transition: opacity 0.2s;
-        -webkit-transition: opacity 0.2s;
-      `};
   }
 `;
 
@@ -46,10 +39,15 @@ function Navbar() {
   const onToggle = () => {
     setToggle(!toggle);
   };
+  const animation = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: config.wobbly,
+  });
 
   return (
     <div>
-      {toggle ? <DarkBackground toggle={toggle} /> : null}
+      {toggle ? <DarkBackground style={animation} /> : null}
       <HeaderTemplate>
         <Burger onToggle={onToggle} />
         <Logo>letshadow</Logo>
