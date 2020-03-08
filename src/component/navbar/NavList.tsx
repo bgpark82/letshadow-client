@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
+import { useMediaQuery } from 'beautiful-react-hooks';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { animated, useSpring } from 'react-spring';
 import { navItemList } from '../../static/navigation';
 
-const NavListBlock = styled(animated.div)<{ toggle: boolean }>`
+const NavListBlock = styled(animated.div)`
   display: flex;
   align-items: center;
 
@@ -18,7 +19,6 @@ const NavListBlock = styled(animated.div)<{ toggle: boolean }>`
     height: 100%;
     width: 12rem;
     padding: 2rem;
-
     z-index: 200;
   }
 `;
@@ -56,13 +56,18 @@ function NavList({ toggle }: any) {
     },
   });
 
+  const sidebar = useMediaQuery('(max-width:768px)');
+
   return (
     <NavListBlock
-      toggle={toggle}
-      style={{
-        transform: transform.interpolate(transform => transform),
-        opacity: opacity.interpolate(opacity => opacity),
-      }}
+      style={
+        sidebar
+          ? {
+              transform: transform.interpolate(transform => transform),
+              opacity: opacity.interpolate(opacity => opacity),
+            }
+          : {}
+      }
     >
       {navItemList.map((h: any) => (
         <NavItem
