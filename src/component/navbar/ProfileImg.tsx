@@ -40,7 +40,7 @@ const MenuItem = styled(Link)`
 `;
 
 function ProfileImg({ user }: any) {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const { transform, opacity } = useSpring({
     from: { transform: 'translateY(-13rem) scale(0)', opacity: 0 },
     transform: toggle ? 'translateY(0rem) scale(1)' : 'translateY(-13rem) scale(0)',
