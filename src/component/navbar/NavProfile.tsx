@@ -62,10 +62,6 @@ function NavProfile() {
     window.location.href = OAUTH2_SERVER_URL;
   };
 
-  if (!user) {
-    return null;
-  }
-
   return (
     <div>
       {user ? (
