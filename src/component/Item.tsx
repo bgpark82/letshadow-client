@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { toYMD } from '../utils/Date';
 import { gray } from '../utils/theme';
+import Skeleton from './Skeleton';
 
 const ItemBlock = styled.div`
   margin: 0px;
@@ -74,6 +75,36 @@ function Item({ article }: any) {
         <div className="item-bottom">
           <div className="item-source">{source.name}</div>
           <div className="item-date">{toYMD(publishedAt)}</div>
+        </div>
+      </ItemContent>
+    </ItemBlock>
+  );
+}
+
+export function ItemSkeleton({ article }: any) {
+  const { url } = article;
+
+  return (
+    <ItemBlock>
+      <ItemThumbnail>
+        <Skeleton height="16rem" />
+      </ItemThumbnail>
+
+      <ItemContent>
+        <h2>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            <Skeleton marginBottom="0.5rem" height="1.5rem" />
+            <Skeleton marginBottom="0.5rem" height="1.5rem" />
+            <Skeleton marginBottom="0.5rem" height="1.5rem" />
+          </a>
+        </h2>
+        <div className="item-bottom">
+          <div>
+            <Skeleton width="3rem" height="1.5rem" />
+          </div>
+          <div className="item-date">
+            <Skeleton width="5rem" height="1rem" />
+          </div>
         </div>
       </ItemContent>
     </ItemBlock>

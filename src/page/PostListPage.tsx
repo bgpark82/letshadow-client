@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ItemList from '../component/ItemList';
+import ItemList, { ItemListSkeleton } from '../component/ItemList';
 
 export type Article = {
   title: string;
@@ -31,12 +31,10 @@ function PostListPage({ match }: any) {
     fetchData();
   }, [header]);
 
-  if (loading) {
-    return <PostListTemplate>대기 중...</PostListTemplate>;
-  }
+  const demo = new Array(20).fill(1);
 
   if (!article) {
-    return null;
+    return <ItemListSkeleton articles={demo} />;
   }
 
   return (

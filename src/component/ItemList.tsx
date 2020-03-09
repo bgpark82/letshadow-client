@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import Item from './Item';
+import Item, { ItemSkeleton } from './Item';
 
 const ItemListBlock = styled.div`
   display: flex;
@@ -15,6 +15,16 @@ function ItemList({ articles }: any) {
     <ItemListBlock>
       {articles.map((article: any) => (
         <Item key={article.url} article={article} />
+      ))}
+    </ItemListBlock>
+  );
+}
+
+export function ItemListSkeleton({ articles }: any) {
+  return (
+    <ItemListBlock>
+      {articles.map((article: any) => (
+        <ItemSkeleton key={article.url} article={article} />
       ))}
     </ItemListBlock>
   );
