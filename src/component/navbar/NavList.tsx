@@ -4,12 +4,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { animated, useSpring } from 'react-spring';
 import { navItemList } from '../../static/navigation';
+import media from '../../utils/media';
 
 const NavListBlock = styled(animated.div)`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  ${media.small} {
     position: absolute;
     align-items: baseline;
     flex-direction: column;

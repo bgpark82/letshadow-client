@@ -2,10 +2,10 @@
 import { jsx } from '@emotion/core';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { axiosInterceptor } from '../../service/UserService';
 import apiClient from '../../utils/apiClient';
-import { DEFAULT_SERVER_URL, TOKEN_KEY } from '../../utils/static';
+import { CURRENT_USER, DEFAULT_SERVER_URL, TOKEN_KEY } from '../../utils/static';
 import LoginButton from './LoginButton';
 import LoginDialog from './LoginDialog';
 
@@ -13,6 +13,7 @@ function NavProfile() {
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState(null);
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     const param = qs.parse(location.search);
@@ -20,11 +21,16 @@ function NavProfile() {
     localStorage.setItem(TOKEN_KEY, token);
 
     async function fetch() {
-      const res = await apiClient.get(DEFAULT_SERVER_URL + '/user/me', { headers: { Authorization: 'Bearer ' + token } });
-      setUser(res.data);
+      const res = await apiClient.get(DEFAULT_SERVER_URL + '/user/me', {
+        headers: { Authorization: 'Bearer ' + token },
+      });
+      const user = res.data;
+      localStorage.setItem(CURRENT_USER, user);
+      setUser(user);
       axiosInterceptor();
     }
     fetch();
+    history.push('/');
   }, []);
 
   const onClick = () => setVisible(true);
