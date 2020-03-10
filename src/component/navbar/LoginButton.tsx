@@ -9,6 +9,7 @@ const buttonStyle = css`
 `;
 
 function LoginButton({ user, onClick }: any) {
+  console.log('last user ' + user);
   return (
     <>
       {user ? (

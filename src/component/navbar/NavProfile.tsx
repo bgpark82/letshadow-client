@@ -9,9 +9,8 @@ import apiClient from '../../utils/apiClient';
 import LoginButton from './LoginButton';
 import LoginDialog from './LoginDialog';
 
-function NavProfile() {
+function NavProfile({ user }: any) {
   const [visible, setVisible] = useState(false);
-  const [user, setUser] = useState(null);
   const location = useLocation();
   const history = useHistory();
 
@@ -25,8 +24,7 @@ function NavProfile() {
         headers: { Authorization: 'Bearer ' + token },
       });
       const user = res.data;
-      localStorage.setItem(CURRENT_USER, user);
-      setUser(user);
+      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
       axiosInterceptor();
     }
     fetch();

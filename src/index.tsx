@@ -7,11 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import { CURRENT_USER } from './static/static';
 
 const user = localStorage.getItem(CURRENT_USER);
-console.log(user);
 
 ReactDOM.render(
   <Router>
-    <App />
+    <App user={user} />
   </Router>,
   document.getElementById('root'),
 );
