@@ -2,7 +2,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import React from 'react';
 import { Button, ButtonGroup, Dialog } from 'thenextloop-uikit';
-import { OAUTH2_SERVER_URL } from '../../utils/static';
+import { OAUTH2_SERVER_URL } from '../../static/static';
 
 const DialogTitle = styled.h1`
   font-family: 'Rouge Script', cursive;
@@ -28,7 +28,14 @@ function LoginDialog({ visible, onConfirm, onCancel }: any) {
   };
 
   return (
-    <Dialog cancelText="취소" visible={visible} onConfirm={onConfirm} onCancel={onCancel} cancelable css={DialogStyle}>
+    <Dialog
+      cancelText="취소"
+      visible={visible}
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+      cancelable
+      css={DialogStyle}
+    >
       <DialogTitle>letshadow</DialogTitle>
       <DialogMessage>
         <span>Let's Shadow</span>에 오신 것을 환영합니다 🥳

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DEFAULT_SERVER_URL, TOKEN_KEY } from '../utils/static';
+import { DEFAULT_SERVER_URL, TOKEN_KEY } from '../static/static';
 
 export const getUser = async () => {
   try {

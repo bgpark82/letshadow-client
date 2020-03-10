@@ -4,8 +4,8 @@ import qs from 'qs';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { axiosInterceptor } from '../../service/UserService';
+import { CURRENT_USER, DEFAULT_SERVER_URL, TOKEN_KEY } from '../../static/static';
 import apiClient from '../../utils/apiClient';
-import { CURRENT_USER, DEFAULT_SERVER_URL, TOKEN_KEY } from '../../utils/static';
 import LoginButton from './LoginButton';
 import LoginDialog from './LoginDialog';
 
