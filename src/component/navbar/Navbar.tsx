@@ -34,13 +34,11 @@ const DarkBackground = styled(animated.div)`
   }
 `;
 
-function Navbar({ user }: any) {
+function Navbar() {
   const [toggle, setToggle] = useState(false);
   const onToggle = () => {
     setToggle(!toggle);
   };
-
-  console.log('oauthuser : ' + user);
 
   const animation = useSpring({
     from: { opacity: 0 },
@@ -55,7 +53,7 @@ function Navbar({ user }: any) {
         <Burger onToggle={onToggle} />
         <Logo>letshadow</Logo>
         <NavList toggle={toggle} />
-        <NavProfile user={user} />
+        <NavProfile />
       </HeaderTemplate>
     </div>
   );

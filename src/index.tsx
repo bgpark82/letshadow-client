@@ -4,13 +4,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import { CURRENT_USER } from './static/static';
-
-const user = localStorage.getItem(CURRENT_USER);
 
 ReactDOM.render(
   <Router>
-    <App user={user} />
+    <App />
   </Router>,
   document.getElementById('root'),
 );

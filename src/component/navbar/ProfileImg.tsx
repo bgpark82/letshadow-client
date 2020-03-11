@@ -40,7 +40,6 @@ const MenuItem = styled(Link)`
 `;
 
 function ProfileImg({ user }: any) {
-  const oauthUser = JSON.parse(user);
   const [toggle, setToggle] = useState(false);
   const { transform, opacity } = useSpring({
     from: { transform: 'translateY(-13rem) scale(0)', opacity: 0 },
@@ -58,7 +57,7 @@ function ProfileImg({ user }: any) {
 
   return (
     <>
-      <Profile src={oauthUser.picture} alt="profile" onClick={onToggle} />
+      <Profile src={user.picture} alt="profile" onClick={onToggle} />
 
       <DropDownMenu
         style={{

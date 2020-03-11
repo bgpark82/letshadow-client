@@ -4,10 +4,10 @@ import './App.css';
 import Navbar from './component/navbar/Navbar';
 import PostListPage from './page/PostListPage';
 
-function App({ user }: any) {
+function App() {
   return (
     <>
-      <Navbar user={user} />
+      <Navbar />
       <Switch>
         <Route path="/:category?" component={PostListPage} exact />
       </Switch>

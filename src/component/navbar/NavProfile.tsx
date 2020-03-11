@@ -9,7 +9,7 @@ import apiClient from '../../utils/apiClient';
 import LoginButton from './LoginButton';
 import LoginDialog from './LoginDialog';
 
-function NavProfile({ user }: any) {
+function NavProfile() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
   const history = useHistory();
@@ -17,7 +17,7 @@ function NavProfile({ user }: any) {
   useEffect(() => {
     const param = qs.parse(location.search);
     const token = param['?token'];
-    localStorage.setItem(TOKEN_KEY, token);
+    if (token) localStorage.setItem(TOKEN_KEY, token);
 
     async function fetch() {
       const res = await apiClient.get(DEFAULT_SERVER_URL + '/user/me', {
@@ -25,10 +25,10 @@ function NavProfile({ user }: any) {
       });
       const user = res.data;
       localStorage.setItem(CURRENT_USER, JSON.stringify(user));
+      history.push('/');
       axiosInterceptor();
     }
     fetch();
-    history.push('/');
   }, []);
 
   const onClick = () => setVisible(true);
@@ -37,7 +37,7 @@ function NavProfile({ user }: any) {
 
   return (
     <div>
-      <LoginButton user={user} onClick={onClick} />
+      <LoginButton onClick={onClick} />
       <LoginDialog visible={visible} onConfirm={onConfirm} onCancel={onCancel} />
     </div>
   );
