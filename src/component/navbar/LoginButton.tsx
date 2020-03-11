@@ -11,12 +11,11 @@ const buttonStyle = css`
 
 function LoginButton({ onClick }: any) {
   const currentUser = localStorage.getItem(CURRENT_USER);
-  let user;
-  if (currentUser !== null) user = JSON.parse(currentUser);
+  const user = currentUser === null ? null : JSON.parse(currentUser);
 
   return (
     <>
-      {user === null || user === undefined ? (
+      {user === null ? (
         <Button theme="bordered" radius size="small" onClick={onClick} css={buttonStyle}>
           로그인
         </Button>
