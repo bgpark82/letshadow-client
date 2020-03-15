@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Button } from 'thenextloop-uikit';
-import { CURRENT_USER } from '../../static/static';
 import ProfileImg from './ProfileImg';
 
 const buttonStyle = css`
@@ -9,18 +9,17 @@ const buttonStyle = css`
   cursor: pointer;
 `;
 
-function LoginButton({ onClick }: any) {
-  const currentUser = localStorage.getItem(CURRENT_USER);
-  const user = currentUser === null ? null : JSON.parse(currentUser);
+function LoginButton({ onClick }) {
+  const user = useSelector(state => state.user.user);
 
   return (
     <>
-      {user === null ? (
+      {user ? (
+        <ProfileImg user={user}></ProfileImg>
+      ) : (
         <Button theme="bordered" radius size="small" onClick={onClick} css={buttonStyle}>
           로그인
         </Button>
-      ) : (
-        <ProfileImg user={user}></ProfileImg>
       )}
     </>
   );

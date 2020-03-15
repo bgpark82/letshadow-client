@@ -2,10 +2,10 @@
 import { jsx } from '@emotion/core';
 import qs from 'qs';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { axiosInterceptor } from '../../service/UserService';
-import { CURRENT_USER, DEFAULT_SERVER_URL, TOKEN_KEY } from '../../static/static';
-import apiClient from '../../utils/apiClient';
+import { check } from '../../modules/user';
+import { CURRENT_USER, TOKEN_KEY } from '../../static/static';
 import LoginButton from './LoginButton';
 import LoginDialog from './LoginDialog';
 
@@ -13,23 +13,32 @@ function NavProfile() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { user, auth, authError } = useSelector(state => ({
+    user: state.user.user,
+    auth: state.auth.auth,
+    authError: state.auth.authError,
+  }));
 
   useEffect(() => {
+    if (user) {
+      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
+      history.push('/');
+    }
+  }, [history, user]);
+
+  useEffect(() => {
+    if (authError) {
+      console.log('오류 발생');
+      console.log(authError);
+      return;
+    }
+
     const param = qs.parse(location.search);
     const token = param['?token'];
     if (token) localStorage.setItem(TOKEN_KEY, token);
-
-    async function fetch() {
-      const res = await apiClient.get(DEFAULT_SERVER_URL + '/user/me', {
-        headers: { Authorization: 'Bearer ' + token },
-      });
-      const user = res.data;
-      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
-      history.push('/');
-      axiosInterceptor();
-    }
-    fetch();
-  }, []);
+    dispatch(check(token));
+  }, [dispatch]);
 
   const onClick = () => setVisible(true);
   const onConfirm = () => setVisible(false);
