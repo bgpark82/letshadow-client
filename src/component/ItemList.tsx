@@ -23,8 +23,8 @@ function ItemList({ articles }: any) {
 export function ItemListSkeleton({ articles }: any) {
   return (
     <ItemListBlock>
-      {articles.map((article: any) => (
-        <ItemSkeleton key={article.url} article={article} />
+      {articles.map((article:number,index:number) => (
+        <ItemSkeleton key={index} article={article} />
       ))}
     </ItemListBlock>
   );

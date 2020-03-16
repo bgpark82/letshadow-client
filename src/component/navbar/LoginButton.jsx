@@ -11,7 +11,7 @@ const buttonStyle = css`
 
 function LoginButton({ onClick }) {
   const {user} = useSelector(state => ({user: state.user.user}));
-console.log("user : " +user);
+
   return (
     <>
       {user ? (

@@ -14,21 +14,15 @@ function NavProfile() {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { user, auth, authError } = useSelector(state => ({
+  const { user, authError } = useSelector(state => ({
     user: state.user.user,
-    auth: state.auth.auth,
     authError: state.auth.authError,
   }));
 
-
-
   useEffect(()=>{
-
-    if(user){
-      if(!localStorage.getItem(CURRENT_USER)){
+    if(user && !localStorage.getItem(CURRENT_USER) ){
         localStorage.setItem(CURRENT_USER, JSON.stringify(user));
         history.push('/');   
-      }
      }
   },[user])
 
