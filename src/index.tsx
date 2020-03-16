@@ -16,7 +16,8 @@ function loadUser() {
   try {
     const user = localStorage.getItem(CURRENT_USER);
     if (!user) return;
-    store.dispatch(tempSetUser(user));
+    const authUser = JSON.parse(user);
+    store.dispatch(tempSetUser(authUser));
   } catch (e) {
     console.log('localStorage is not working');
   }

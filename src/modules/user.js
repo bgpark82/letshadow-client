@@ -3,9 +3,11 @@ import * as authApi from '../lib/api/auth';
 import createRequestSaga, { createRequestActionTypes } from '../lib/createRequestSaga';
 
 const TEMP_SET_USER = 'user/TEMP_SET_USER';
+const IS_USER_LOGIN = 'user/IS_USER_LOGIN'
 
 const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes('user/CHECK');
 
+export const isUserLogin = _ => ({type: IS_USER_LOGIN})
 export const tempSetUser = user => ({ type: TEMP_SET_USER, payload: user });
 export const check = token => ({ type: CHECK, payload: token });
 
@@ -18,6 +20,7 @@ export function* userSaga() {
 const initialState = {
   user: null,
   checkError: null,
+  isLoggedIn : false
 };
 
 const user = (state = initialState, action) => {
@@ -39,6 +42,11 @@ const user = (state = initialState, action) => {
         user: null,
         checkError: action.payload.error,
       };
+    case IS_USER_LOGIN:
+      return {
+        ...state,
+        isLoggedIn: true
+      }
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import qs from 'qs';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { check } from '../../modules/user';
+import { check, isUserLogin } from '../../modules/user';
 import { CURRENT_USER, TOKEN_KEY } from '../../static/static';
 import LoginButton from './LoginButton';
 import LoginDialog from './LoginDialog';
@@ -20,12 +20,17 @@ function NavProfile() {
     authError: state.auth.authError,
   }));
 
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
-      history.push('/');
-    }
-  }, [history, user]);
+
+
+  useEffect(()=>{
+
+    if(user){
+      if(!localStorage.getItem(CURRENT_USER)){
+        localStorage.setItem(CURRENT_USER, JSON.stringify(user));
+        history.push('/');   
+      }
+     }
+  },[user])
 
   useEffect(() => {
     if (authError) {
@@ -36,8 +41,11 @@ function NavProfile() {
 
     const param = qs.parse(location.search);
     const token = param['?token'];
-    if (token) localStorage.setItem(TOKEN_KEY, token);
-    dispatch(check(token));
+    if (token){
+       localStorage.setItem(TOKEN_KEY, token);
+       dispatch(check(token));
+    }
+   
   }, [dispatch]);
 
   const onClick = () => setVisible(true);
