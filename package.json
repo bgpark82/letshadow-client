@@ -19,7 +19,7 @@
     "axios": "^0.19.2",
     "beautiful-react-hooks": "^0.22.2",
     "dotenv": "^8.2.0",
-    "immer": "^6.0.1",
+    "immer": "^9.0.6",
     "qs": "^6.9.1",
     "react": "^16.13.0",
     "react-cookie": "^4.0.3",
